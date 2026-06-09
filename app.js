@@ -84,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Format price
         productPriceEl.textContent = price.toLocaleString('fr-FR') + ' €';
+        productPriceEl.classList.add('updating');
+        setTimeout(() => productPriceEl.classList.remove('updating'), 300);
         return price;
     }
 
@@ -187,7 +189,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 url: window.location.href
             }).catch(console.error);
         } else {
-            alert('Lien de partage copié dans le presse-papiers !');
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                alert('Lien de partage copié dans le presse-papiers !');
+            }).catch(() => {
+                alert('Impossible de copier le lien. Veuillez copier l\'URL de votre navigateur.');
+            });
         }
     });
 
@@ -214,18 +220,46 @@ document.addEventListener('DOMContentLoaded', () => {
             modalPriceVal.textContent = currentPrice.toLocaleString('fr-FR') + ' €';
 
             cartModal.classList.add('active');
+            document.body.classList.add('no-scroll');
+            modalCloseBtn.focus();
         }, 1200);
     });
 
     // Close Modal
     function closeModal() {
         cartModal.classList.remove('active');
+        document.body.classList.remove('no-scroll');
+        btnAddToCart.focus();
     }
 
     modalCloseBtn.addEventListener('click', closeModal);
     btnContinueShopping.addEventListener('click', closeModal);
     cartModal.addEventListener('click', (e) => {
         if (e.target === cartModal) closeModal();
+    });
+
+    // Focus Trap & Escape to close
+    cartModal.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'Tab') {
+            const focusableElements = cartModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+            if (focusableElements.length === 0) return;
+            
+            const firstElement = focusableElements[0];
+            const lastElement = focusableElements[focusableElements.length - 1];
+
+            if (e.shiftKey) {
+                if (document.activeElement === firstElement) {
+                    lastElement.focus();
+                    e.preventDefault();
+                }
+            } else {
+                if (document.activeElement === lastElement) {
+                    firstElement.focus();
+                    e.preventDefault();
+                }
+            }
+        }
     });
 
     // Initial setup
