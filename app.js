@@ -55,6 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalDescText = document.getElementById('modal-description-text');
     const modalPriceVal = document.getElementById('modal-price-val');
 
+    // Hotspots
+    const hotspots = document.querySelectorAll('.image-hotspot');
+
     // UI Action buttons on Preview
     const btnZoom = document.getElementById('btn-zoom');
     const btnRotate = document.getElementById('btn-rotate');
@@ -260,6 +263,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
+    });
+
+    // Hotspot Interaction Logic (Cycle and Highlight)
+    hotspots.forEach(hotspot => {
+        hotspot.addEventListener('click', () => {
+            const targetId = hotspot.getAttribute('data-target');
+            const targetGroup = document.getElementById(targetId);
+            
+            if (targetGroup) {
+                // Cycle to the next material
+                const swatches = Array.from(targetGroup.querySelectorAll('.swatch-btn'));
+                if (swatches.length > 0) {
+                    const activeIndex = swatches.findIndex(btn => btn.classList.contains('active'));
+                    const nextIndex = (activeIndex + 1) % swatches.length;
+                    swatches[nextIndex].click(); // Simulate click on the next swatch
+                }
+
+                // Scroll to the group
+                targetGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // Highlight animation
+                targetGroup.classList.remove('highlight-group');
+                // Force reflow
+                void targetGroup.offsetWidth;
+                targetGroup.classList.add('highlight-group');
+                
+                setTimeout(() => {
+                    targetGroup.classList.remove('highlight-group');
+                }, 1500);
+            }
+        });
+    });
+
+    // Image Preloader for instant switching
+    window.addEventListener('load', () => {
+        const imagesToPreload = new Set(Object.values(imageMapping));
+        imagesToPreload.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
     });
 
     // Initial setup
