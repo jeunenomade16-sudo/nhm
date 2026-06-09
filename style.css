@@ -260,6 +260,97 @@ body {
     z-index: 10;
 }
 
+/* Image Hotspots */
+.image-hotspot {
+    position: absolute;
+    background: rgba(212, 175, 55, 0.3); /* Stronger gold background */
+    border: 1px solid var(--accent-color);
+    border-radius: 50%;
+    width: 40px; /* Slightly larger */
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    transition: var(--transition-smooth);
+    z-index: 50; /* Higher z-index */
+}
+
+.image-hotspot::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid var(--accent-color);
+    opacity: 0;
+    transform: scale(1);
+    animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.hotspot-icon {
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    font-weight: 300;
+    transition: transform 0.3s ease;
+}
+
+.hotspot-label {
+    position: absolute;
+    left: 50px;
+    background: rgba(8, 8, 10, 0.85);
+    border: 1px solid var(--border-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateX(-10px);
+    pointer-events: none;
+    transition: var(--transition-smooth);
+}
+
+.image-hotspot:hover {
+    background: rgba(212, 175, 55, 0.5);
+    border-color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.image-hotspot:hover .hotspot-icon {
+    transform: rotate(90deg);
+    color: var(--text-primary);
+}
+
+.image-hotspot:hover .hotspot-label {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.hotspot-top {
+    top: 30%;
+    left: 55%;
+}
+
+.hotspot-base {
+    top: 75%;
+    left: 45%;
+}
+
+@keyframes pulse {
+    to {
+        box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
+        opacity: 0;
+        transform: scale(1.5);
+    }
+    from {
+        box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+        opacity: 1;
+    }
+}
+
 .preview-action-btn {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.06);
