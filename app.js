@@ -120,6 +120,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Toggle active class for tabletop swatches
                 document.querySelectorAll('.swatch-btn[data-type="top"]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+
+                // Enforce compatibility rules based on available images
+                if (value === 'glass' && state.base !== 'chrome') {
+                    const chromeBtn = document.querySelector('.swatch-btn[data-value="chrome"][data-type="base"]');
+                    if (chromeBtn) chromeBtn.click();
+                    return; // Prevent double rendering, click() handles the rest
+                } else if (value === 'marble' && state.base === 'chrome') {
+                    const metalBtn = document.querySelector('.swatch-btn[data-value="metal"][data-type="base"]');
+                    if (metalBtn) metalBtn.click();
+                    return; // Prevent double rendering, click() handles the rest
+                }
+
             } else if (type === 'base') {
                 state.base = value;
                 selectedBaseLabel.textContent = label;
@@ -127,6 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Toggle active class for base swatches
                 document.querySelectorAll('.swatch-btn[data-type="base"]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
+                
+                // Enforce compatibility for base clicks
+                if (value === 'chrome' && state.top === 'marble') {
+                    const charcoalBtn = document.querySelector('.swatch-btn[data-value="charcoal"][data-type="top"]');
+                    if (charcoalBtn) charcoalBtn.click();
+                    return;
+                } else if (value !== 'chrome' && state.top === 'glass') {
+                    const glassChromeBtn = document.querySelector('.swatch-btn[data-value="chrome"][data-type="base"]');
+                    if (glassChromeBtn) glassChromeBtn.click(); // Force it back to chrome
+                    return;
+                }
             }
 
             updatePreviewImage();
