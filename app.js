@@ -37,15 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedBaseLabel = document.getElementById('selected-base');
     const selectedSizeLabel = document.getElementById('selected-size');
     const productPriceEl = document.getElementById('product-price');
-    
+
     const swatchBtns = document.querySelectorAll('.swatch-btn');
     const sizeBtns = document.querySelectorAll('.size-btn');
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
-    
+
     const btnAddToCart = document.getElementById('btn-add-to-cart');
     const cartBadge = document.querySelector('.cart-badge');
-    
+
     // Modal Elements
     const cartModal = document.getElementById('cart-modal');
     const modalCloseBtn = document.getElementById('modal-close-btn');
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to calculate and update price
     function updatePrice() {
         let price = state.basePrice;
-        
+
         // Add modifier for top
         const activeTopBtn = document.querySelector('.swatch-btn[data-type="top"].active');
         if (activeTopBtn) {
@@ -93,10 +93,10 @@ document.addEventListener('DOMContentLoaded', () => {
     function updatePreviewImage() {
         const key = `${state.top}+${state.base}`;
         const targetImage = imageMapping[key] || 'charcoal_table.png';
-        
+
         // Apply smooth fade out, change source, and fade in
         tablePreview.classList.remove('active');
-        
+
         setTimeout(() => {
             tablePreview.src = targetImage;
             tablePreview.classList.add('active');
@@ -113,14 +113,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (type === 'top') {
                 state.top = value;
                 selectedTopLabel.textContent = label;
-                
+
                 // Toggle active class for tabletop swatches
                 document.querySelectorAll('.swatch-btn[data-type="top"]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
             } else if (type === 'base') {
                 state.base = value;
                 selectedBaseLabel.textContent = label;
-                
+
                 // Toggle active class for base swatches
                 document.querySelectorAll('.swatch-btn[data-type="base"]').forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
@@ -136,10 +136,10 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             sizeBtns.forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            
+
             state.size = parseInt(btn.getAttribute('data-size'), 10);
             selectedSizeLabel.textContent = btn.getAttribute('data-label');
-            
+
             updatePrice();
         });
     });
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btn.addEventListener('click', () => {
             tabBtns.forEach(b => b.classList.remove('active'));
             tabContents.forEach(c => c.classList.remove('active'));
-            
+
             btn.classList.add('active');
             const targetTab = btn.getAttribute('data-tab');
             document.getElementById(`tab-${targetTab}`).classList.add('active');
@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btnRotate.addEventListener('click', () => {
         angle = (angle + 90) % 360;
         tablePreview.style.filter = `hue-rotate(${angle}deg) drop-shadow(0 15px 30px rgba(0,0,0,0.7))`;
-        
+
         // Visual notification
         btnRotate.style.transform = 'scale(1.15)';
         setTimeout(() => {
@@ -200,10 +200,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cart loading and modal display
     btnAddToCart.addEventListener('click', () => {
         btnAddToCart.classList.add('loading');
-        
+
         setTimeout(() => {
             btnAddToCart.classList.remove('loading');
-            
+
             // Increment cart count
             state.cartCount++;
             cartBadge.textContent = state.cartCount;
@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Tab') {
             const focusableElements = cartModal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
             if (focusableElements.length === 0) return;
-            
+
             const firstElement = focusableElements[0];
             const lastElement = focusableElements[focusableElements.length - 1];
 
