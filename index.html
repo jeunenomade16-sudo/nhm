@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurateur de Table Premium | Atelier NHM</title>
+    <meta name="description" content="Personnalisez les matériaux de votre table NHM. Choisissez parmi nos bois nobles, marbres raffinés et finitions métalliques haut de gamme.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header / Logo -->
+        <header class="main-header">
+            <div class="logo">
+                <span class="brand-atelier">ATELIER</span>
+                <span class="brand-name">NHM</span>
+            </div>
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">Configurateur</a>
+                <a href="#" class="nav-link">La Collection</a>
+                <a href="#" class="nav-link">Notre Atelier</a>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" aria-label="Recherche"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="icon-btn" aria-label="Favoris"><i class="fa-regular fa-heart"></i></button>
+                <button class="icon-btn cart-btn" aria-label="Panier">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Workspace -->
+        <main class="configurator-main">
+            <!-- Left Side: Interactive Preview -->
+            <section class="preview-section">
+                <div class="badge-new">Sur Mesure</div>
+                <div class="image-gallery-container">
+                    <div class="image-wrapper">
+                        <img id="table-preview" src="charcoal_table.png" alt="Table sur mesure NHM" class="preview-image active">
+                        <div class="image-overlay-glow"></div>
+                    </div>
+                </div>
+                
+                <!-- Micro interactions / quick actions on preview -->
+                <div class="preview-actions">
+                    <button class="preview-action-btn" id="btn-zoom" title="Zoomer"><i class="fa-solid fa-expand"></i></button>
+                    <button class="preview-action-btn" id="btn-rotate" title="Changer d'angle"><i class="fa-solid fa-rotate-right"></i></button>
+                    <button class="preview-action-btn" id="btn-share" title="Partager"><i class="fa-solid fa-share-nodes"></i></button>
+                </div>
+            </section>
+
+            <!-- Right Side: Configurator Control Panel -->
+            <section class="controls-section">
+                <div class="product-header">
+                    <span class="product-category">Table à manger signature</span>
+                    <h1 class="product-title">Table Modulable NHM-1</h1>
+                    <p class="product-subtitle">Une silhouette sculpturale, sublimée par des matériaux d'exception façonnés à la main dans notre atelier.</p>
+                    
+                    <div class="price-rating-container">
+                        <div class="price-tag" id="product-price">1 890 €</div>
+                        <div class="rating-stars">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="rating-count">(48)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="separator"></div>
+
+                <!-- Customizer Options -->
+                <div class="customizer-options">
+                    
+                    <!-- Option 1: Top Material -->
+                    <div class="option-group" id="group-top">
+                        <div class="option-group-header">
+                            <span class="option-label">Matériau du Plateau</span>
+                            <span class="option-selected-value" id="selected-top">Bois Brûlé (Charcoal)</span>
+                        </div>
+                        <div class="swatches-grid">
+                            <!-- Charcoal Wood -->
+                            <button class="swatch-btn active swatch-charcoal" data-type="top" data-value="charcoal" data-label="Bois Brûlé (Charcoal)" data-price-mod="0">
+                                <span class="swatch-tooltip">Bois Brûlé</span>
+                            </button>
+                            <!-- Oak Wood -->
+                            <button class="swatch-btn swatch-oak" data-type="top" data-value="oak" data-label="Chêne Naturel Massif" data-price-mod="250">
+                                <span class="swatch-tooltip">Chêne Massif</span>
+                            </button>
+                            <!-- White Marble -->
+                            <button class="swatch-btn swatch-marble" data-type="top" data-value="marble" data-label="Marbre Blanc de Carrare" data-price-mod="600">
+                                <span class="swatch-tooltip">Marbre Blanc</span>
+                            </button>
+                            <!-- Glass -->
+                            <button class="swatch-btn swatch-glass" data-type="top" data-value="glass" data-label="Verre Trempé Clair" data-price-mod="-100">
+                                <span class="swatch-tooltip">Verre Trempé</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Option 2: Base / Legs Material -->
+                    <div class="option-group" id="group-base">
+                        <div class="option-group-header">
+                            <span class="option-label">Finition du Piètement</span>
+                            <span class="option-selected-value" id="selected-base">Métal Noir Mat</span>
+                        </div>
+                        <div class="swatches-grid">
+                            <!-- Black Metal -->
+                            <button class="swatch-btn active swatch-metal" data-type="base" data-value="metal" data-label="Métal Noir Mat" data-price-mod="0">
+                                <span class="swatch-tooltip">Noir Mat</span>
+                            </button>
+                            <!-- Brass -->
+                            <button class="swatch-btn swatch-brass" data-type="base" data-value="brass" data-label="Laiton Brossé" data-price-mod="300">
+                                <span class="swatch-tooltip">Laiton Brossé</span>
+                            </button>
+                            <!-- Chrome -->
+                            <button class="swatch-btn swatch-chrome" data-type="base" data-value="chrome" data-label="Acier Chromé Poli" data-price-mod="150">
+                                <span class="swatch-tooltip">Chrome Poli</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Option 3: Dimensions -->
+                    <div class="option-group">
+                        <div class="option-group-header">
+                            <span class="option-label">Dimensions (Longueur)</span>
+                            <span class="option-selected-value" id="selected-size">200 cm (8-10 personnes)</span>
+                        </div>
+                        <div class="size-selector">
+                            <button class="size-btn" data-size="160" data-label="160 cm (6-8 personnes)" data-price-mod="-150">160 cm</button>
+                            <button class="size-btn active" data-size="200" data-label="200 cm (8-10 personnes)" data-price-mod="0">200 cm</button>
+                            <button class="size-btn" data-size="240" data-label="240 cm (10-12 personnes)" data-price-mod="250">240 cm</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="separator"></div>
+
+                <!-- Specs Accordions / Tabs -->
+                <div class="specs-container">
+                    <div class="tabs-header">
+                        <button class="tab-btn active" data-tab="details">Description</button>
+                        <button class="tab-btn" data-tab="specs">Fiche Technique</button>
+                        <button class="tab-btn" data-tab="delivery">Livraison & Pose</button>
+                    </div>
+                    <div class="tab-content active" id="tab-details">
+                        <p>Chaque table est façonnée individuellement selon vos choix. Le contraste saisissant entre la texture brute de nos plateaux et la précision géométrique de notre piètement crée une pièce maîtresse intemporelle pour votre intérieur.</p>
+                    </div>
+                    <div class="tab-content" id="tab-specs">
+                        <ul>
+                            <li><strong>Hauteur :</strong> 75 cm</li>
+                            <li><strong>Largeur :</strong> 95 cm</li>
+                            <li><strong>Provenance :</strong> Matériaux biosourcés, fabriqués en France</li>
+                            <li><strong>Entretien :</strong> Traité anti-tâches, nettoyage doux au chiffon humide</li>
+                        </ul>
+                    </div>
+                    <div class="tab-content" id="tab-delivery">
+                        <p>Livraison premium par transporteur spécialisé avec installation dans la pièce de votre choix. Offerte en France métropolitaine sous 4 à 6 semaines.</p>
+                    </div>
+                </div>
+
+                <!-- Footer Summary / Action -->
+                <div class="purchase-container">
+                    <div class="delivery-estimate">
+                        <i class="fa-solid fa-truck-fast"></i>
+                        <span>Livraison estimée : <strong>Début Juillet</strong></span>
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn-primary" id="btn-add-to-cart">
+                            <span class="btn-text">Ajouter au panier</span>
+                            <span class="btn-loader"><i class="fa-solid fa-circle-notch fa-spin"></i></span>
+                        </button>
+                        <button class="btn-secondary" id="btn-contact"><i class="fa-regular fa-envelope"></i> Contacter un designer</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modal-close-btn">&times;</button>
+            <div class="modal-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <h2>Ajouté au panier avec succès !</h2>
+            <p>Votre table configurée sur mesure a été ajoutée à votre sélection.</p>
+            <div class="modal-summary">
+                <img id="modal-img" src="charcoal_table.png" alt="Table configurée">
+                <div class="modal-details">
+                    <h3 id="modal-title">Table Modulable NHM-1</h3>
+                    <p id="modal-description-text">Bois Brûlé & Piètement Noir Mat - 200 cm</p>
+                    <p class="modal-price" id="modal-price-val">1 890 €</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" id="btn-continue-shopping">Continuer la configuration</button>
+                <button class="btn-primary">Finaliser la commande</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

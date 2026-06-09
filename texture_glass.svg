@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120">
+  <defs>
+    <linearGradient id="glass-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="30%" stop-color="#e0f2fe" stop-opacity="0.6" />
+      <stop offset="70%" stop-color="#bae6fd" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#7dd3fc" stop-opacity="0.75" />
+    </linearGradient>
+  </defs>
+  <!-- Base gradient -->
+  <rect width="100%" height="100%" fill="url(#glass-grad)" />
+  <!-- Glass edge reflection border -->
+  <rect x="2" y="2" width="116" height="116" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.8" rx="2" />
+  <!-- Gloss shine -->
+  <path d="M0,0 L120,0 L120,40 Z" fill="#ffffff" opacity="0.25" />
+</svg>

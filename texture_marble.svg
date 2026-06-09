@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- Soft white base -->
+  <rect width="120" height="120" fill="#f8f9fa" />
+  <radialGradient id="marble-shading" cx="30%" cy="30%" r="70%">
+    <stop offset="0%" stop-color="#ffffff" />
+    <stop offset="70%" stop-color="#f1f3f5" />
+    <stop offset="100%" stop-color="#e9ecef" />
+  </radialGradient>
+  <rect width="120" height="120" fill="url(#marble-shading)" />
+  
+  <!-- Realistic hand-crafted vector veins (jagged and thin) -->
+  <g stroke="#7e8896" fill="none" opacity="0.45">
+    <!-- Main vein -->
+    <path d="M-10,25 L15,35 L25,32 L45,52 L60,48 L80,72 L95,68 L130,105" stroke-width="1.2" />
+    <!-- Finer branches -->
+    <path d="M45,52 L52,68 L70,72 L85,95" stroke-width="0.6" opacity="0.7" />
+    <path d="M25,32 L35,18 L55,10" stroke-width="0.5" opacity="0.6" />
+    <path d="M80,72 L90,88 L115,92" stroke-width="0.6" opacity="0.7" />
+  </g>
+  
+  <g stroke="#9ca3af" fill="none" opacity="0.25">
+    <!-- Secondary soft vein -->
+    <path d="M35,-10 L42,15 L38,35 L50,62 L45,85 L62,110 L58,130" stroke-width="0.8" />
+    <path d="M50,62 L65,70 L72,95 L90,110" stroke-width="0.4" />
+  </g>
+</svg>

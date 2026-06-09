@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="chrome-shine" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="20%" stop-color="#cbd5e1" />
+      <stop offset="45%" stop-color="#64748b" />
+      <stop offset="60%" stop-color="#f8fafc" />
+      <stop offset="80%" stop-color="#cbd5e1" />
+      <stop offset="100%" stop-color="#334155" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" fill="url(#chrome-shine)" />
+  <!-- Subtle reflection stripes -->
+  <g stroke="#ffffff" stroke-width="1" opacity="0.15">
+    <line x1="0" y1="20" x2="120" y2="20" />
+    <line x1="0" y1="70" x2="120" y2="70" />
+  </g>
+  <g stroke="#1e293b" stroke-width="0.5" opacity="0.1">
+    <line x1="0" y1="45" x2="120" y2="45" />
+    <line x1="0" y1="95" x2="120" y2="95" />
+  </g>
+</svg>
